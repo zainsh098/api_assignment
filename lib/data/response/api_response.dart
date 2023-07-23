@@ -1,21 +1,19 @@
-
-
 import 'package:api_assignment/data/response/status.dart';
 
-class ApiResponse<T>
-{
+class ApiResponse<T> {
   Status? status;
   T? data;
   String? message;
 
   ApiResponse(this.status, this.data, this.message);
 
-      ApiResponse.LOADING() :status=Status.LOADING;
+  ApiResponse.LOADING() : status = Status.LOADING;
 
-  ApiResponse.COMPLETED():status=Status.COMPLETED;
+  ApiResponse.COMPLETED() : status = Status.COMPLETED;
 
-  ApiResponse.ERROR():status=Status.ERROR;
+  ApiResponse.ERROR() : status = Status.ERROR;
 
-
-
+  String toString() {
+    return "Status :$message \n Message : $message \n Data : $data";
+  }
 }
