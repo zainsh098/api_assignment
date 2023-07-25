@@ -3,6 +3,7 @@ class Assets {
   Assets._();
 
   static const String componentsCards = 'lib/res/components/cards.dart';
+  static const String componentsGridMobile = 'lib/res/components/GridMobile.dart';
   static const String componentsIcons = 'lib/res/components/icons.dart';
   static const String componentsText = 'lib/res/components/text.dart';
   static const String componentsTextFormfield = 'lib/res/components/text_formfield.dart';

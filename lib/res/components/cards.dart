@@ -17,7 +17,7 @@ class CardsView extends StatelessWidget {
       child: SizedBox(
         height: height,
         width: width,
-        child:Center(child: TextWidget(text, AppColors.blackText, 20)),
+        child:Center(child: TextWidget(text , AppColors.blackText, 20)),
 
 
 
