@@ -1,5 +1,5 @@
 import 'package:api_assignment/res/colors.dart';
-import 'package:api_assignment/res/components/GridMobile.dart';
+
 import 'package:api_assignment/res/components/cards.dart';
 import 'package:api_assignment/res/components/icons.dart';
 import 'package:api_assignment/res/components/text.dart';
@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../res/components/text_formfield.dart';
+import 'grid_view.dart';
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({super.key});
@@ -28,182 +29,185 @@ class _Home_ScreenState extends State<Home_Screen> {
         toolbarHeight: 120,
         backgroundColor: Colors.blueGrey.shade800,
         actions: [
-          SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Row(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(right: 42, bottom: 15),
-                      child: MainTitleText(),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(right: 42, bottom: 15),
+                    child: MainTitleText(),
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.only(right: 15.0, bottom: 15),
+                      child: TextWidget('India', AppColors.whiteText, 13)),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 25.0, bottom: 15),
+                    child: IconWidget(
+                      onPress: () {},
+                      icon: Icons.location_on,
+                      size: 25,
+                      color: AppColors.whiteBackground,
                     ),
-                    Padding(
-                        padding: const EdgeInsets.only(right: 15.0, bottom: 15),
-                        child: TextWidget('India', AppColors.whiteText, 13)),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 25.0, bottom: 15),
-                      child: IconWidget(
-                        onPress: () {},
-                        icon: Icons.location_on,
-                        size: 25,
-                        color: AppColors.whiteBackground,
-                      ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 25, bottom: 23),
+                    child: IconWidget(
+                      onPress: () {},
+                      icon: Icons.notifications,
+                      size: 30,
+                      color: AppColors.whiteBackground,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 25, bottom: 23),
-                      child: IconWidget(
-                        onPress: () {},
-                        icon: Icons.notifications,
-                        size: 30,
-                        color: AppColors.whiteBackground,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 30),
-                      child: TextFormFieldSearchBar(),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 30),
+                    child: TextFormFieldSearchBar(),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 30,
-              top: 10,
-            ),
-            child: TextWidget('Buy Top Brands ', AppColors.blackText, 15),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Padding(
-              padding: EdgeInsets.only(left: 5, right: 5),
-              child: Row(
-                children: [
-                  CardsView(height: 100, width: 90, text: 'Apple'),
-                  SizedBox(
-                    width: 3,
-                  ),
-                  CardsView(height: 100, width: 90, text: 'Apple'),
-                  SizedBox(
-                    width: 3,
-                  ),
-                  CardsView(height: 100, width: 90, text: 'Apple'),
-                  SizedBox(
-                    width: 3,
-                  ),
-                  CardsView(height: 100, width: 90, text: 'Apple'),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          SizedBox(
-            height: 150,
+      body: SingleChildScrollView(
 
-            // Adjust the height as needed
-            child: PageView.builder(
-              itemCount: 3,
-              pageSnapping: true,
-              controller: _pageController,
-              itemBuilder: (_, index) {
-                // Replace the Container below with your desired page content
-                return Container(
-                  width: 500,
-                  margin: EdgeInsets.symmetric(vertical: 1, horizontal: 1),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.grey.shade300,
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Page $index",
-                      style: TextStyle(color: Colors.indigo),
+
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 30,
+                top: 10,
+              ),
+              child: TextWidget('Buy Top Brands ', AppColors.blackText, 15),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Padding(
+                padding: EdgeInsets.only(left: 5, right: 5),
+                child: Row(
+                  children: [
+                    CardsView(height: 100, width: 90, text: 'Apple'),
+                    SizedBox(
+                      width: 3,
                     ),
-                  ),
-                );
-              },
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-
-          // Add the SmoothPageIndicator for the new PageView
-          Center(
-            child: SmoothPageIndicator(
-                controller: _pageController,
-                count: 4, // Replace with your desired count of pages
-                effect: ExpandingDotsEffect(
-                    dotColor: Colors.blueGrey,
-                    dotHeight: 10,
-                    dotWidth: 10,
-                    activeDotColor: Colors.amber)),
-          ),
-
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 30,
-              top: 10,
-            ),
-            child: TextWidget('Shop By', AppColors.blackText, 15),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Padding(
-              padding: EdgeInsets.only(left: 5, right: 5),
-              child: Row(
-                children: [
-                  CardsView(height: 120, width: 95, text: 'Apple'),
-                  SizedBox(
-                    width: 3,
-                  ),
-                  CardsView(height: 110, width: 95, text: 'Apple'),
-                  SizedBox(
-                    width: 3,
-                  ),
-                  CardsView(height: 110, width: 95, text: 'Apple'),
-                  SizedBox(
-                    width: 3,
-                  ),
-                  CardsView(height: 110, width: 95, text: 'Apple'),
-                ],
+                    CardsView(height: 100, width: 90, text: 'Apple'),
+                    SizedBox(
+                      width: 3,
+                    ),
+                    CardsView(height: 100, width: 90, text: 'Apple'),
+                    SizedBox(
+                      width: 3,
+                    ),
+                    CardsView(height: 100, width: 90, text: 'Apple'),
+                  ],
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 10,),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 30,
-              top: 10,
+            SizedBox(
+              height: 10,
             ),
-            child: TextWidget('Best Deals Near You ', AppColors.blackText, 15),
+            SizedBox(
+              height: 150,
+
+              // Adjust the height as needed
+              child: PageView.builder(
+                itemCount: 3,
+                pageSnapping: true,
+                controller: _pageController,
+                itemBuilder: (_, index) {
+                  // Replace the Container below with your desired page content
+                  return Container(
+                    width: 500,
+                    margin: EdgeInsets.symmetric(vertical: 1, horizontal: 1),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.grey.shade300,
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Page $index",
+                        style: TextStyle(color: Colors.indigo),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+
+            // Add the SmoothPageIndicator for the new PageView
+            Center(
+              child: SmoothPageIndicator(
+                  controller: _pageController,
+                  count: 4, // Replace with your desired count of pages
+                  effect: ExpandingDotsEffect(
+                      dotColor: Colors.blueGrey,
+                      dotHeight: 10,
+                      dotWidth: 10,
+                      activeDotColor: Colors.amber)),
+            ),
+
+            SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 30,
+                top: 10,
+              ),
+              child: TextWidget('Shop By', AppColors.blackText, 15),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Padding(
+                padding: EdgeInsets.only(left: 5, right: 5),
+                child: Row(
+                  children: [
+                    CardsView(height: 120, width: 95, text: 'Apple'),
+                    SizedBox(
+                      width: 3,
+                    ),
+                    CardsView(height: 110, width: 95, text: 'Apple'),
+                    SizedBox(
+                      width: 3,
+                    ),
+                    CardsView(height: 110, width: 95, text: 'Apple'),
+                    SizedBox(
+                      width: 3,
+                    ),
+                    CardsView(height: 110, width: 95, text: 'Apple'),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 30,
+                top: 10,
+              ),
+              child: TextWidget('Best Deals Near You ', AppColors.blackText, 15),
 
 
-          ),
-          MobileGrid(),
+            ),
 
-        ],
+            GridViewWidget(),
+
+          ],
+        ),
       ),
     );
   }
