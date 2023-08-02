@@ -3,30 +3,30 @@ import 'package:api_assignment/res/colors.dart';
 import 'package:api_assignment/res/components/cards.dart';
 import 'package:api_assignment/res/components/icons.dart';
 import 'package:api_assignment/res/components/text.dart';
+
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../res/components/text_formfield.dart';
-import 'grid_view.dart';
-
 class Home_Screen extends StatefulWidget {
-  const Home_Screen({super.key});
+  const Home_Screen({Key? key}) : super(key: key);
 
   @override
   State<Home_Screen> createState() => _Home_ScreenState();
 }
 
 class _Home_ScreenState extends State<Home_Screen> {
-  final PageController _pageController =
-      PageController(viewportFraction: 0.8, keepPage: true);
+  final PageController _pageController = PageController(viewportFraction: 0.8, keepPage: true);
 
   @override
   Widget build(BuildContext context) {
-    int index = 4;
+    // Get the screen width and height
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 120,
+        toolbarHeight: screenHeight * 0.15, // Use a fraction of screen height
         backgroundColor: Colors.blueGrey.shade800,
         actions: [
           Column(
@@ -40,8 +40,9 @@ class _Home_ScreenState extends State<Home_Screen> {
                     child: MainTitleText(),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(right: 15.0, bottom: 15),
-                      child: TextWidget('India', AppColors.whiteText, 13)),
+                    padding: const EdgeInsets.only(right: 15.0, bottom: 15),
+                    child: TextWidget('India', AppColors.whiteText, 13),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(right: 25.0, bottom: 15),
                     child: IconWidget(
@@ -65,7 +66,7 @@ class _Home_ScreenState extends State<Home_Screen> {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 30),
+                    padding: EdgeInsets.only(right: screenWidth * 0.08), // Adjust spacing based on screen width
                     child: TextFormFieldSearchBar(),
                   ),
                 ],
@@ -75,7 +76,7 @@ class _Home_ScreenState extends State<Home_Screen> {
         ],
       ),
       body: SingleChildScrollView(
-
+        scrollDirection: Axis.vertical,
 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -91,25 +92,26 @@ class _Home_ScreenState extends State<Home_Screen> {
             const SizedBox(
               height: 10,
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Padding(
-                padding: EdgeInsets.only(left: 5, right: 5),
+            Padding(
+              padding: EdgeInsets.only(left: 5, right: 5),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+
                 child: Row(
                   children: [
-                    CardsView(height: 100, width: 90, text: 'Apple'),
+                    CardsView(height: screenHeight * 0.2, width: screenWidth * 0.22, text: 'Apple'),
                     SizedBox(
-                      width: 3,
+                      width: screenWidth * 0.02,
                     ),
-                    CardsView(height: 100, width: 90, text: 'Apple'),
+                    CardsView(height: screenHeight * 0.2, width: screenWidth * 0.22, text: 'Apple'),
                     SizedBox(
-                      width: 3,
+                      width: screenWidth * 0.02,
                     ),
-                    CardsView(height: 100, width: 90, text: 'Apple'),
+                    CardsView(height: screenHeight * 0.2, width: screenWidth * 0.22, text: 'Apple'),
                     SizedBox(
-                      width: 3,
+                      width: screenWidth * 0.02,
                     ),
-                    CardsView(height: 100, width: 90, text: 'Apple'),
+                    CardsView(height: screenHeight * 0.2, width: screenWidth * 0.22, text: 'Apple'),
                   ],
                 ),
               ),
@@ -118,9 +120,7 @@ class _Home_ScreenState extends State<Home_Screen> {
               height: 10,
             ),
             SizedBox(
-              height: 150,
-
-              // Adjust the height as needed
+              height: screenHeight * 0.3, // Adjust the height as needed
               child: PageView.builder(
                 itemCount: 3,
                 pageSnapping: true,
@@ -128,7 +128,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                 itemBuilder: (_, index) {
                   // Replace the Container below with your desired page content
                   return Container(
-                    width: 500,
+                    width: screenWidth * 0.7, // Adjust width based on screen width
                     margin: EdgeInsets.symmetric(vertical: 1, horizontal: 1),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
@@ -151,15 +151,16 @@ class _Home_ScreenState extends State<Home_Screen> {
             // Add the SmoothPageIndicator for the new PageView
             Center(
               child: SmoothPageIndicator(
-                  controller: _pageController,
-                  count: 4, // Replace with your desired count of pages
-                  effect: ExpandingDotsEffect(
-                      dotColor: Colors.blueGrey,
-                      dotHeight: 10,
-                      dotWidth: 10,
-                      activeDotColor: Colors.amber)),
+                controller: _pageController,
+                count: 4, // Replace with your desired count of pages
+                effect: ExpandingDotsEffect(
+                  dotColor: Colors.blueGrey,
+                  dotHeight: 10,
+                  dotWidth: 10,
+                  activeDotColor: Colors.amber,
+                ),
+              ),
             ),
-
             SizedBox(
               height: 5,
             ),
@@ -170,42 +171,97 @@ class _Home_ScreenState extends State<Home_Screen> {
               ),
               child: TextWidget('Shop By', AppColors.blackText, 15),
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Padding(
-                padding: EdgeInsets.only(left: 5, right: 5),
+            Padding(
+              padding: EdgeInsets.only(left: 5, right: 5),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+
                 child: Row(
                   children: [
-                    CardsView(height: 120, width: 95, text: 'Apple'),
+                    CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
                     SizedBox(
-                      width: 3,
+                      width: screenWidth * 0.02,
                     ),
-                    CardsView(height: 110, width: 95, text: 'Apple'),
+                    CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
                     SizedBox(
-                      width: 3,
+                      width: screenWidth * 0.02,
                     ),
-                    CardsView(height: 110, width: 95, text: 'Apple'),
+                    CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
                     SizedBox(
-                      width: 3,
+                      width: screenWidth * 0.02,
                     ),
-                    CardsView(height: 110, width: 95, text: 'Apple'),
+                    CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Padding(
               padding: const EdgeInsets.only(
                 left: 30,
                 top: 10,
               ),
-              child: TextWidget('Best Deals Near You ', AppColors.blackText, 15),
-
-
+              child: TextWidget('Recently Viewed', AppColors.blackText, 15),
             ),
+            Padding(
+              padding: EdgeInsets.only(left: 5, right: 5),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
 
-            GridViewWidget(),
-
+                child: Row(
+                  children: [
+                    CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
+                    SizedBox(
+                      width: screenWidth * 0.02,
+                    ),
+                    CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
+                    SizedBox(
+                      width: screenWidth * 0.02,
+                    ),
+                    CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
+                    SizedBox(
+                      width: screenWidth * 0.02,
+                    ),
+                    CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 30,
+                top: 10,
+              ),
+              child: TextWidget('Daily essentials', AppColors.blackText, 15),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 5, right: 5),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
+                    SizedBox(
+                      width: screenWidth * 0.02,
+                    ),
+                    CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
+                    SizedBox(
+                      width: screenWidth * 0.02,
+                    ),
+                    CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
+                    SizedBox(
+                      width: screenWidth * 0.02,
+                    ),
+                    CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

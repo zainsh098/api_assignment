@@ -1,36 +1,17 @@
-import 'package:api_assignment/view/grid_componet.dart';
+import 'package:api_assignment/res/colors.dart';
+import 'package:api_assignment/res/components/text.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-
-import '../res/colors.dart';
-import '../res/components/text.dart';
-import '../view_model/grid_viewModel.dart';
-class GridViewWidget extends StatelessWidget {
-  GridViewWidget({super.key});
+class GridComponent extends StatelessWidget {
+  const GridComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
 
-
-
-    final gridViewModel = Provider.of<GridViewModel>(context);
-
-    return GridView.builder(
-
-
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-
-        crossAxisCount: 2,
-        childAspectRatio: 3 / 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-      ),
-      itemCount: gridViewModel.gridItems.length,
-      itemBuilder: (context, index) {
-        final item = gridViewModel.gridItems[index];
-        return Padding(
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.only(left: 25, top: 30),
           child: Column(
             children: [
@@ -43,7 +24,7 @@ class GridViewWidget extends StatelessWidget {
                   color: Colors.blueGrey.shade100,
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                 mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Align(
                       alignment: Alignment.topRight,
@@ -61,7 +42,7 @@ class GridViewWidget extends StatelessWidget {
                       alignment: Alignment.topCenter,
                       child: Image.network(
 
-                        'https://images.pexels.com/photos/4081882/pexels-photo-4081882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',height: 165,),
+                          'https://images.pexels.com/photos/4081882/pexels-photo-4081882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',height: 165,),
                     ),
                     SizedBox(
                       height: 8,
@@ -100,7 +81,7 @@ class GridViewWidget extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(right: 30),
                               child:
-                              TextWidget('128 GB', AppColors.blackText, 11),
+                                  TextWidget('128 GB', AppColors.blackText, 11),
                             ),
                             TextWidget(
                                 'Condition Good', AppColors.blackText, 11)
@@ -127,9 +108,8 @@ class GridViewWidget extends StatelessWidget {
               ),
             ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
-

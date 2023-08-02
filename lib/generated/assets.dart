@@ -2,20 +2,25 @@
 class Assets {
   Assets._();
 
+  static const String baseJsonConvertContent = 'lib/generated/json/base/json_convert_content.dart';
+  static const String baseJsonField = 'lib/generated/json/base/json_field.dart';
   static const String componentsCards = 'lib/res/components/cards.dart';
   static const String componentsIcons = 'lib/res/components/icons.dart';
   static const String componentsText = 'lib/res/components/text.dart';
   static const String componentsTextFormfield = 'lib/res/components/text_formfield.dart';
   static const String dataAppExceptions = 'lib/data/app_exceptions.dart';
   static const String generatedAssets = 'lib/generated/assets.dart';
+
   static const String libMain = 'lib/main.dart';
 
+  static const String modelListingsDataEntity = 'lib/model/listings_data_entity.dart';
   static const String networkBaseApiServces = 'lib/data/network/BaseApiServces.dart';
   static const String networkNetworkApiServices = 'lib/data/network/NetworkApiServices.dart';
   static const String resAppUrl = 'lib/res/app_url.dart';
   static const String resColors = 'lib/res/colors.dart';
   static const String responseApiResponse = 'lib/data/response/api_response.dart';
   static const String responseStatus = 'lib/data/response/status.dart';
+  static const String viewGridComponet = 'lib/view/grid_componet.dart';
   static const String viewGridView = 'lib/view/grid_view.dart';
   static const String viewHomeScreen = 'lib/view/home_screen.dart';
   static const String viewModelGridViewModel = 'lib/view_model/grid_viewModel.dart';
