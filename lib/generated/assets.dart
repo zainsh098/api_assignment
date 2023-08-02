@@ -10,12 +10,13 @@ class Assets {
   static const String componentsTextFormfield = 'lib/res/components/text_formfield.dart';
   static const String dataAppExceptions = 'lib/data/app_exceptions.dart';
   static const String generatedAssets = 'lib/generated/assets.dart';
-
+  static const String jsonListingsDataEntity.g = 'lib/generated/json/listings_data_entity.g.dart';
   static const String libMain = 'lib/main.dart';
-
+  static const String modelGrid Item = 'lib/model/grid _item.dart';
   static const String modelListingsDataEntity = 'lib/model/listings_data_entity.dart';
   static const String networkBaseApiServces = 'lib/data/network/BaseApiServces.dart';
   static const String networkNetworkApiServices = 'lib/data/network/NetworkApiServices.dart';
+  static const String repositoryHomeRepositry = 'lib/repository/home_repositry.dart';
   static const String resAppUrl = 'lib/res/app_url.dart';
   static const String resColors = 'lib/res/colors.dart';
   static const String responseApiResponse = 'lib/data/response/api_response.dart';
@@ -24,5 +25,6 @@ class Assets {
   static const String viewGridView = 'lib/view/grid_view.dart';
   static const String viewHomeScreen = 'lib/view/home_screen.dart';
   static const String viewModelGridViewModel = 'lib/view_model/grid_viewModel.dart';
+  static const String viewModelHomeViewModel = 'lib/view_model/home_view_model.dart';
 
 }
