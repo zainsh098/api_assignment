@@ -48,6 +48,7 @@ class MainTitleText extends StatelessWidget {
               fontSize: 15,
               fontWeight: FontWeight.bold,
               color: Colors.white,
+
             ),
           ),
         ],

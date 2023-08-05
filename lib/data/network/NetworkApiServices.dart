@@ -1,39 +1,44 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:api_assignment/data/app_exceptions.dart';
+import 'package:api_assignment/res/app_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:api_assignment/data/network/BaseApiServces.dart';
 import 'package:http/http.dart';
 
-class NetworkApiServices extends BaseApiServices {
+
+  class NetworkApiService extends BaseApiServices {
   @override
-  Future getGetApiResponse(String url) async {
-    dynamic responseJson;
+  Future getGetapiResponse(String url) async {
+    dynamic responseJosn;
     try {
       final response =
-          await http.get(Uri.parse(url)).timeout(const Duration(seconds: 15));
-      responseJson = returnResponse(response);
+      await http.get(Uri.parse(url)).timeout(const Duration(seconds: 10));
+      responseJosn=returnResposne(response);
     } on SocketException {
-      throw FethDataException('No Internet Connection');
+      throw FetchDataException("No Internet Connection ");
     }
-    return responseJson;
+    return responseJosn;
   }
 
   @override
-  Future getPostApiResponse(String url, dynamic data) async {
-    dynamic responseJson;
+  Future getpostAPiResponse(String url,dynamic data )  async {
+    dynamic responseJosn;
     try {
-      Response response =
-          await post(Uri.parse(url), body: data).timeout(Duration(seconds: 15));
+      Response response = await post(
+          Uri.parse(url),
+          body: data).timeout(const Duration(seconds: 10));
 
-      response = returnResponse(response);
+      responseJosn=returnResposne(response);
+
     } on SocketException {
-      throw FethDataException("No Internet Connection");
+      throw FetchDataException("No Internet Connection ");
     }
-    return responseJson;
+    return responseJosn;
+
   }
 
-  dynamic returnResponse(http.Response response) {
+  dynamic returnResposne(http.Response response) {
     switch (response.statusCode) {
       case 200:
         dynamic responseJson = jsonDecode(response.body);
@@ -41,9 +46,8 @@ class NetworkApiServices extends BaseApiServices {
       case 400:
         throw BadRequestException(response.body.toString());
       default:
-        throw FethDataException(
-            "Error occur While Communicating with server + with status code " +
-                response.statusCode.toString());
+        throw FetchDataException(
+            'Error occer While Communcationg with server + with status code' + response.statusCode.toString());
     }
   }
 }

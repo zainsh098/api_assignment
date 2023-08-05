@@ -212,6 +212,10 @@ class _Home_ScreenState extends State<Home_Screen> {
 
                 child: Row(
                   children: [
+
+
+
+
                     CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
                     SizedBox(
                       width: screenWidth * 0.02,
@@ -225,6 +229,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                       width: screenWidth * 0.02,
                     ),
                     CardsView(height: screenHeight * 0.3, width: screenWidth * 0.24, text: 'Apple'),
+
                   ],
                 ),
               ),

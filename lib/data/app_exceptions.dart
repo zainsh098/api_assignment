@@ -10,8 +10,8 @@ class AppException implements Exception {
   }
 }
 
-class FethDataException extends AppException {
-  FethDataException([String? message])
+class FetchDataException extends AppException {
+  FetchDataException([String? message])
       : super(message, 'Error During Communication ');
 }
 
